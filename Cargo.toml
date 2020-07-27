@@ -1,5 +1,5 @@
 [package]
-name = "rust-intro"
+name = "rustintro"
 version = "0.1.0"
 authors = ["Jêrome Rouaix <jerome@beezup.com>"]
 edition = "2018"
