@@ -1,9 +1,11 @@
 [package]
 name = "rustintro"
 version = "0.1.0"
-authors = ["Jêrome Rouaix <jerome@beezup.com>"]
+authors = ["Jêrome Rx <jerome+git@rouaix.eu>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+tide = "0.13.0"
+async-std = { version = "1.6.2", features = ["attributes"] }
