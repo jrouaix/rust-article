@@ -35,21 +35,21 @@ fn main() {
     // }
 }
 
-fn try_return_string_ref() {
-    // Aucun problème, la fonction test retourne une valeur et en donne la propriété a la variable t.
-    let _t1 = return_string();
-    let _t2 = return_string_ref();
-}
+// fn try_return_string_ref() {
+//     // Aucun problème, la fonction test retourne une valeur et en donne la propriété a la variable t.
+//     let _t1 = return_string();
+//     let _t2 = return_string_ref();
+// }
 
-fn return_string() -> String {
-    String::from("hello")
-}
+// fn return_string() -> String {
+//     String::from("hello")
+// }
 
-// Cette fonction ne compile pas car elle retourne la référence d'une String qui sera droppée a la fin de la fonction
-fn return_string_ref<'a>() -> &'a String {
-    let s = String::from("hello");
-    &s // ^^ returns a reference to data owned by the current function
-}
+// // Cette fonction ne compile pas car elle retourne la référence d'une String qui sera droppée a la fin de la fonction
+// fn return_string_ref<'a>() -> &'a String {
+//     let s = String::from("hello");
+//     &s // ^^ returns a reference to data owned by the current function
+// }
 
 // fn borrow_checker_prevent_from_change_while_iterate() {
 //     let mut list = vec![1, 2, 3, 4];
