@@ -1,5 +1,6 @@
 use itertools::Itertools;
 use rayon::prelude::*;
+use std::sync::*;
 
 fn main() {
     const N: u128 = 10000;
@@ -7,13 +8,17 @@ fn main() {
 }
 
 fn get_primes_before(max: u128) -> Vec<u128> {
-    let mut previous = vec![];
+    let mut previous = RwLock::new(vec![]);
     (0..max)
         .into_par_iter()
         .filter(|i| {
-            let prime = is_prime(i, &mut previous);
+            let prime = {
+                let reader = previous.read().unwrap();
+                is_prime(i, &*reader)
+            };
             if prime {
-                previous.push(*i);
+                let mut writer = previous.write().unwrap();
+                writer.push(*i);
             }
             prime
         })
@@ -40,13 +45,13 @@ mod tests {
     #[test]
     fn performances() {
         let now = Instant::now();
-        let _test = get_primes_before(50000);
+        let _test = get_primes_before(1500000);
         dbg!(now.elapsed());
     }
 
     #[test]
     fn is_prime_tests() {
-        let mut test_them_all: Vec<_> = (2u128..100).collect();
+        let test_them_all: Vec<_> = (2u128..100).collect();
         assert_eq!(is_prime(&1, &test_them_all), false);
         assert_eq!(is_prime(&4, &test_them_all), false);
         assert_eq!(is_prime(&6, &test_them_all), false);
