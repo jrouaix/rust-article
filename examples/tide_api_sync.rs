@@ -1,3 +1,5 @@
+use futures::prelude::*;
+use redis::AsyncCommands;
 use tide::Request;
 
 #[async_std::main]

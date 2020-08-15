@@ -29,8 +29,8 @@ mod tests {
     #[test]
     fn performances() {
         let now = Instant::now();
-        let _test = get_primes_before(50000);
-        dbg!(now.elapsed());
+        let _test = get_primes_before(100_000);
+        dbg!(_test.len(), now.elapsed());
     }
 
     #[test]

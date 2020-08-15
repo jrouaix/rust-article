@@ -29,8 +29,15 @@ fn is_prime(number: &u128, previous_ones: &Vec<u128>) -> bool {
     if *number <= 1 {
         return false;
     }
+    let mut last_previous = 2;
     for i in previous_ones.iter() {
         if number % i == 0 && number != i {
+            return false;
+        }
+        last_previous = *i;
+    }
+    for i in last_previous + 1..*number {
+        if number % i == 0 && *number != i {
             return false;
         }
     }
@@ -45,8 +52,8 @@ mod tests {
     #[test]
     fn performances() {
         let now = Instant::now();
-        let _test = get_primes_before(1500000);
-        dbg!(now.elapsed());
+        let _test = get_primes_before(100_000);
+        dbg!(_test.len(), now.elapsed());
     }
 
     #[test]
