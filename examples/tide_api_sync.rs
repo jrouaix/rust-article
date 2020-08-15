@@ -1,5 +1,3 @@
-use futures::prelude::*;
-use redis::AsyncCommands;
 use tide::Request;
 
 #[async_std::main]
@@ -21,7 +19,6 @@ async fn uniques(req: Request<()>) -> tide::Result<String> {
 
     #[rustfmt::skip]
     let uniques : (u64,) = redis::pipe()
-        // .atomic()
             .cmd("pfadd").arg("visitors").arg(client_ip)
             .ignore()
             .cmd("pfcount").arg("visitors")
