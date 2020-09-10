@@ -2,7 +2,7 @@ use itertools::Itertools;
 use rayon::prelude::*;
 
 fn main() {
-    const N: u128 = 10000;
+    const N: u128 = 100000;
     println!("{}", get_primes_before(N).iter().join(", "));
 }
 

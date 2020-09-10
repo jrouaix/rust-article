@@ -1,9 +1,9 @@
 #![allow(dead_code)]
 // Commençons par définir 3 énumérations
 // - Les 4 couleurs d'un jeu de cartes
-// - Les valeurs possible pour les qui
-//      ne sont pas des figures
-// - Les Cartes possibles : As, Roi, Dame ...
+// - Les valeurs possibles pour celles qui
+//   ne sont pas des figures
+// - Les cartes possibles : As, Roi, Dame ...
 // Chaque carte ayant besoin des
 // autres enum pour se définir
 

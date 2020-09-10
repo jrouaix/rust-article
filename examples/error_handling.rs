@@ -3,15 +3,20 @@ use std::time::Duration;
 
 fn main() -> Result<(), MyErrors> {
     let s = String::from("Ok!");
-    // la version recommandé
+    // la version recommandée
     let s = timeout(s)?;
-    // la même chose, mais sans utiliser ?
+
+    // la même chose, mais sans utiliser `?`
     let s = match timeout(s) {
         Ok(s) => s,
         Err(e) => return Err(e),
     };
+
+    // maintenant imaginez ce que serait
+    // la gestion d'erreur ci dessous sans
+    // l'usage salvateur de `?`
     let s = timeout(content(pourquoi(s)?)?)?;
-    println!("On a de la chance : {}", s);
+    println!("Ouff : {}", s);
     Ok(())
 }
 

@@ -2,13 +2,15 @@ use itertools::Itertools;
 use rayon::prelude::*;
 use std::sync::*;
 
+// idée d'exemple de Cécile T. : parser des logs et en tirer des stats
+
 fn main() {
     const N: u128 = 10000;
     println!("{}", get_primes_before(N).iter().join(", "));
 }
 
 fn get_primes_before(max: u128) -> Vec<u128> {
-    let mut previous = RwLock::new(vec![]);
+    let previous = RwLock::new(vec![]);
     (0..max)
         .into_par_iter()
         .filter(|i| {
