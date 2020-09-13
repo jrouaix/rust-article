@@ -11,7 +11,7 @@ cargo test --example typesystem_enums_operators
 
 rustdoc --test ./examples/doctests.rs
 
-docker run -it --rm redis
+docker run -it --rm -p 6379:6379 redis
 cargo run --example tide_api
 cd loadtest && cargo run -- --host http://127.0.0.1:8080 -u500 -r20
 
