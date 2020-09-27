@@ -33,7 +33,7 @@ enum Card {
 }
 
 // Ici l'implementation du trait `PartialOrd` et de la methode
-// `value()` nous permet de comparer les valeurs
+// `value()` nous permettent de comparer les valeurs
 // en nous basant sur leur représentation numérique
 
 impl PartialOrd for N {
@@ -92,7 +92,7 @@ fn main() {}
 // Rien dans le main, mais voici les tests.
 
 // cet attribut permet de ne compiler le module test
-// que si on execute les tests, il ne seraient pas
+// que si on exécute les tests, il ne seraient pas
 // compilés et donc livré dans la config --release
 #[cfg(test)]
 mod tests {

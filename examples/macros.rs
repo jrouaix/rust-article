@@ -1,19 +1,29 @@
 // version normal
+#![feature(format_args_capture)]
+
 fn main() {
-    let v = vec![1, 2, 3];
-    print!("vec = {:?} !", v);
+    let vector = vec![1, 2, 3];
+    let integer = 42;
+    print!("vec = {vector:?}, integer = {integer}");
 }
 
 // // version réellement compilée
-// fn expanded_main() {
+// fn main() {
 //     let v = <[_]>::into_vec(box [1, 2, 3]);
+//     let integer = 42;
 //     ::std::io::_print(::core::fmt::Arguments::new_v1(
-//         &["vec = ", " !"],
-//         &match (&v,) {
-//             (arg0,) => [::core::fmt::ArgumentV1::new(
-//                 arg0,
-//                 ::core::fmt::Debug::fmt,
-//             )],
+//         &["vec = ", ", integer = "],
+//         &match (&v, &integer) {
+//             (arg0, arg1) => [
+//                 ::core::fmt::ArgumentV1::new(
+//                     arg0,
+//                     ::core::fmt::Debug::fmt,
+//                 ),
+//                 ::core::fmt::ArgumentV1::new(
+//                     arg1,
+//                     ::core::fmt::Display::fmt,
+//                 ),
+//             ],
 //         },
 //     ));
 // }

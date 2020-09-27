@@ -1,4 +1,4 @@
-use image::Luma;
+
 use image::Rgba;
 use qrcode::QrCode;
 

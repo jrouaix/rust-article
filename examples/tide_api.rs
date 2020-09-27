@@ -4,7 +4,11 @@ use mobc_redis::{redis, Connection};
 use tide::Request;
 use tide::StatusCode;
 
-#[derive(Clone)] // implémentation `auto` du trait Clone
+#[derive(Clone)]
+// implémentation automatique du trait Clone
+// qui est nécessaire pour que tide puisse
+// donner une copie de l'état de l'application
+// a chaque requête
 struct AppState {
     pool: Pool<RedisConnectionManager>,
 }
@@ -16,7 +20,7 @@ async fn main() -> Result<(), std::io::Error> {
     let manager = RedisConnectionManager::new(client);
     // On crée ici un connection pool vers Redis
     let pool = Pool::builder()
-        // on utilisera 5 connections a Redis concurrentes
+        // On utilisera 5 connections concurrentes à Redis
         .max_open(5)
         // on évitera ici de produire un Timeout
         // a cause d'une attente sur Redis

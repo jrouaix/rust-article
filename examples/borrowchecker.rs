@@ -1,6 +1,6 @@
 // Cette fonction ne compile pas car la valeur est `moved`
 // de s1 vers s2, il n'est donc plus possible d'utiliser s1
-fn a_value_own_by_2_variables() {
+fn a_value_owned_by_2_variables() {
     let s1 = String::from("hello");
     // -- move occurs because `s1` has type `std::string::String`,
     // which does not implement the `Copy` trait
@@ -17,6 +17,9 @@ fn main() {
         let borrow2 = &s;
         // Ok pour 2 références non modifiable
         dbg!(borrow1, borrow2);
+        // dbg! imprime une représentation de debug
+        // de ce qui lui est passé en paramètres
+        // sur la console
     }
     {
         let mutable_borrow = &mut s;
