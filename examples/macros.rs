@@ -2,9 +2,9 @@
 #![feature(format_args_capture)]
 
 fn main() {
-    let vector = vec![1, 2, 3];
-    let integer = 42;
-    print!("vec = {vector:?}, integer = {integer}");
+  let vector = vec![1, 2, 3];
+  let integer = 42;
+  print!("vec = {vector:?}, integer = {integer}");
 }
 
 // // version réellement compilée
@@ -33,8 +33,8 @@ fn main() {
 
 #[derive(Debug)]
 struct Test {
-    i: u32,
-    s: String,
+  i: u32,
+  s: String,
 }
 
 // struct Test {

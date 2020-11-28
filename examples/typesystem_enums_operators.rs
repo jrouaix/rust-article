@@ -37,12 +37,12 @@ enum Card {
 // en nous basant sur leur représentation numérique
 
 impl PartialOrd for N {
-    fn partial_cmp(
-        &self,
-        other: &N,
-    ) -> std::option::Option<std::cmp::Ordering> {
-        self.value().partial_cmp(&other.value())
-    }
+  fn partial_cmp(
+    &self,
+    other: &N,
+  ) -> std::option::Option<std::cmp::Ordering> {
+    self.value().partial_cmp(&other.value())
+  }
 }
 
 #[rustfmt::skip]
@@ -63,29 +63,29 @@ impl N {
 // s'il ne l'est pas, ça ne compile pas
 
 impl PartialOrd for Card {
-    fn partial_cmp(
-        &self,
-        other: &Card,
-    ) -> std::option::Option<std::cmp::Ordering> {
-        use Card::*;
-        let result = match (self, other) {
-            (s, o) if s == o => Ordering::Equal,
-            (Ace(_), Ace(_)) => Ordering::Equal,
-            (King(_), King(_)) => Ordering::Equal,
-            (Queen(_), Queen(_)) => Ordering::Equal,
-            (Jack(_), Jack(_)) => Ordering::Equal,
-            (Number(_, s), Number(_, o)) => s.partial_cmp(o)?,
-            (Ace(_), _) => Ordering::Greater,
-            (_, Ace(_)) => Ordering::Less,
-            (King(_), _) => Ordering::Greater,
-            (_, King(_)) => Ordering::Less,
-            (Queen(_), _) => Ordering::Greater,
-            (_, Queen(_)) => Ordering::Less,
-            (Jack(_), _) => Ordering::Greater,
-            (_, Jack(_)) => Ordering::Less,
-        };
-        Some(result)
-    }
+  fn partial_cmp(
+    &self,
+    other: &Card,
+  ) -> std::option::Option<std::cmp::Ordering> {
+    use Card::*;
+    let result = match (self, other) {
+      (s, o) if s == o => Ordering::Equal,
+      (Ace(_), Ace(_)) => Ordering::Equal,
+      (King(_), King(_)) => Ordering::Equal,
+      (Queen(_), Queen(_)) => Ordering::Equal,
+      (Jack(_), Jack(_)) => Ordering::Equal,
+      (Number(_, s), Number(_, o)) => s.partial_cmp(o)?,
+      (Ace(_), _) => Ordering::Greater,
+      (_, Ace(_)) => Ordering::Less,
+      (King(_), _) => Ordering::Greater,
+      (_, King(_)) => Ordering::Less,
+      (Queen(_), _) => Ordering::Greater,
+      (_, Queen(_)) => Ordering::Less,
+      (Jack(_), _) => Ordering::Greater,
+      (_, Jack(_)) => Ordering::Less,
+    };
+    Some(result)
+  }
 }
 
 fn main() {}
@@ -96,49 +96,49 @@ fn main() {}
 // compilés et donc livré dans la config --release
 #[cfg(test)]
 mod tests {
-    // pour ajouter au scope tout ce est au dessus
-    use super::{Card::*, Color::*, *};
+  // pour ajouter au scope tout ce est au dessus
+  use super::{Card::*, Color::*, *};
 
-    #[test]
-    fn equality_of_some_cards() {
-        assert_eq!(Ace(Club) == King(Club), false);
-        assert_eq!(Ace(Club) == Ace(Club), true);
-        assert_eq!(Ace(Club) == Ace(Diamond), false);
-        assert_eq!(
-            Number(Club, N::_10) == Number(Spade, N::_10),
-            false
-        );
-        assert_eq!(
-            Number(Heart, N::_10) == Number(Heart, N::_2),
-            false
-        );
-        assert_eq!(
-            Number(Diamond, N::_5) == Number(Heart, N::_5),
-            false
-        );
-    }
+  #[test]
+  fn equality_of_some_cards() {
+    assert_eq!(Ace(Club) == King(Club), false);
+    assert_eq!(Ace(Club) == Ace(Club), true);
+    assert_eq!(Ace(Club) == Ace(Diamond), false);
+    assert_eq!(
+      Number(Club, N::_10) == Number(Spade, N::_10),
+      false
+    );
+    assert_eq!(
+      Number(Heart, N::_10) == Number(Heart, N::_2),
+      false
+    );
+    assert_eq!(
+      Number(Diamond, N::_5) == Number(Heart, N::_5),
+      false
+    );
+  }
 
-    #[test]
-    fn compare_some_cards() {
-        assert_eq!(Ace(Club) < King(Club), false);
-        assert_eq!(Ace(Club) >= King(Club), true);
-        assert_eq!(
-            Number(Club, N::_2) >= Number(Diamond, N::_2),
-            true
-        );
-        assert_eq!(
-            Number(Club, N::_2) <= Number(Diamond, N::_2),
-            true
-        );
-        assert_eq!(
-            Number(Club, N::_3) < Number(Diamond, N::_4),
-            true
-        );
-        assert_eq!(
-            Number(Club, N::_7) > Number(Diamond, N::_2),
-            true
-        );
-        assert_eq!(King(Spade) <= Ace(Heart), true);
-        assert_eq!(Number(Spade, N::_10) > Jack(Heart), false);
-    }
+  #[test]
+  fn compare_some_cards() {
+    assert_eq!(Ace(Club) < King(Club), false);
+    assert_eq!(Ace(Club) >= King(Club), true);
+    assert_eq!(
+      Number(Club, N::_2) >= Number(Diamond, N::_2),
+      true
+    );
+    assert_eq!(
+      Number(Club, N::_2) <= Number(Diamond, N::_2),
+      true
+    );
+    assert_eq!(
+      Number(Club, N::_3) < Number(Diamond, N::_4),
+      true
+    );
+    assert_eq!(
+      Number(Club, N::_7) > Number(Diamond, N::_2),
+      true
+    );
+    assert_eq!(King(Spade) <= Ace(Heart), true);
+    assert_eq!(Number(Spade, N::_10) > Jack(Heart), false);
+  }
 }

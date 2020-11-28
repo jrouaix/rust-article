@@ -1,6 +1,6 @@
 fn main() {
-    let s = gimme_a_str("hé", "ho");
-    println!("{}", s);
+  let s = gimme_a_str("hé", "ho");
+  println!("{}", s);
 }
 
 // fn gimme_a_str(first: &str, second: &str) -> &str {
@@ -8,8 +8,8 @@ fn main() {
 // }
 
 fn gimme_a_str<'a, 'b>(
-    first: &'a str,
-    second: &'b str,
+  first: &'a str,
+  second: &'b str,
 ) -> &'a str {
-    second
+  second
 }

@@ -1,6 +1,6 @@
 fn main() {
-    println!("{}", hello("World"));
-    assert_eq!(hello("Programmez!"), "Hello Programmez!!");
+  println!("{}", hello("World"));
+  assert_eq!(hello("Programmez!"), "Hello Programmez!!");
 }
 
 /// # Examples
@@ -11,5 +11,5 @@ fn main() {
 /// assert_eq!(result, "Hello Programmez!!")
 /// ```
 fn hello(name: &str) -> String {
-    format!("Hello {}!", name)
+  format!("Hello {}!", name)
 }
